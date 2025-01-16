@@ -22,7 +22,6 @@ public class CliIntegrationTest {
     private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
 
-    private ByteArrayInputStream inputContent;
     private ByteArrayOutputStream outputContent;
 
     Cli cli;
@@ -30,14 +29,6 @@ public class CliIntegrationTest {
     @BeforeEach
     void setUp() {
         outputContent = new ByteArrayOutputStream();
-        var writer = new BufferedWriter(new OutputStreamWriter(outputContent)) {
-            @Override
-            public void newLine() throws IOException {
-                write('\n');
-            }
-        };
-
-
         System.setOut(new PrintStream(outputContent));
 
         var planeService = PlaneService.initDefault();
@@ -153,7 +144,7 @@ public class CliIntegrationTest {
     }
 
     private void userInput(String data) {
-        inputContent = new ByteArrayInputStream(data.getBytes());
+        ByteArrayInputStream inputContent = new ByteArrayInputStream(data.getBytes());
         System.setIn(inputContent);
     }
 

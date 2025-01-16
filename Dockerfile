@@ -15,7 +15,7 @@ RUN echo "Maven package completed!"
 
 FROM eclipse-temurin:21-jre
 
-COPY --from=build /opt/gogobot/target/gogobot-*.jar /opt/gogobot.jar
+COPY --from=build /opt/gogobot/target/gogobot-*.jar /opt/app.jar
 
 COPY gogobot.sh /usr/bin/gogobot
 
